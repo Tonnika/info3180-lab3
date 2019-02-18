@@ -1,9 +1,12 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
+from flask_mail import Mail
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yourusername:yourpassword@localhost/databasename'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # This is just here to suppress a warning from SQLAlchemy as it will soon be removed
-db = SQLAlchemy(app)
-
-from app import views, models
+app.config['SECRET_KEY'] = 'enter some random passphrase'
+app.config['MAIL_SERVER'] = 'smtp.mailtrap.io'
+app.config['MAIL_PORT'] = '465' # (or try 2525)
+app.config['MAIL_USERNAME'] = 'enter your mailtrap smtp
+username'
+app.config['MAIL_PASSWORD'] = 'enter your mailtrap smtp
+password'
+mail = Mail(app)
+from app import views
